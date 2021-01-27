@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  year: 1
-  rank: 1
+  title: Selma
+  year: 2014
+  rank: 6
 
 two:
-  title: MyString
-  year: 1
-  rank: 1
+  title: Birdman
+  year: 2014
+  rank:
