@@ -4,8 +4,10 @@ module Movie::Contract
     property :year
     property :rank
 
-    #TODO4: Add back validations
-    #validates :title, presence: true
-    #validates :year, inclusion: 1900..2030
+    validates :title, presence: true
+    validates :year, numericality: { only_integer: true, greater_than: 1900,
+                                     less_than: 2030 }
+    validates :rank, numericality: { only_integer: true, greater_than: 0,
+                                     less_than: 21 }
   end
 end

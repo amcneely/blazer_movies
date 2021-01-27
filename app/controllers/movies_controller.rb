@@ -24,9 +24,11 @@ class MoviesController < ApplicationController
     result = Movie::Operation::Create.call(params)
     if result.success?
       puts "IN CONTROLLER - SUCCESS #{result.inspect}"
-      return redirect_to(movies_path)
+      @movie = result["model"]
+      redirect_to @movie, notice: "Movie was successfully created."
     else
       puts "IN CONTROLLER - FAILURE #{result.inspect}"
+      @movie = result["model"]
       render :new
     end
 

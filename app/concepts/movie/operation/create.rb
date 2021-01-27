@@ -2,7 +2,7 @@ class Movie::Operation::Create < Trailblazer::Operation
   step :log_start
   step Model( Movie, :new )
   step Contract::Build( constant: Movie::Contract::Create )
-  step Contract::Validate()
+  step Contract::Validate( key: "movie" )
   step Contract::Persist()
   step :log_finish
 
