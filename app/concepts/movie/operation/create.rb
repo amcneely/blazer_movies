@@ -1,18 +1,16 @@
 class Movie::Operation::Create < Trailblazer::Operation
-  step :log_start
+  success :log_start
   step Model( Movie, :new )
   step Contract::Build( constant: Movie::Contract::Create )
   step Contract::Validate( key: "movie" )
   step Contract::Persist()
-  step :log_finish
+  success :log_finish
 
   def log_start(ctx, params:, **)
-    puts "MOVIE OPERATION START - ctx #{ctx.inspect} params #{params}"
-    true
+    Rails.logger.debug "DEBUG: MOVIE OP START - ctx #{ctx.inspect} params #{params}"
   end
 
   def log_finish(ctx, params:, **)
-    puts "MOVIE OPERATION FINISH - ctx #{ctx.inspect} params #{params}"
-    true
+    Rails.logger.debug "DEBUG: MOVIE OP FINISH - ctx #{ctx.inspect} params #{params}"
   end
 end
