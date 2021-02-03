@@ -193,10 +193,15 @@ GEM
       declarative
       reform (>= 2.2.0, < 3.0.0)
       trailblazer-operation (>= 0.0.12, < 0.1.0)
+    trailblazer-loader (0.1.2)
     trailblazer-operation (0.0.13)
       declarative
       pipetree (>= 0.1.1, < 0.2.0)
       uber
+    trailblazer-rails (1.0.11)
+      railties (>= 4.0.0)
+      trailblazer (~> 2.0.0)
+      trailblazer-loader (>= 0.1.0)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -240,6 +245,7 @@ DEPENDENCIES
   selenium-webdriver
   sqlite3 (~> 1.4)
   trailblazer (= 2.0.7)
+  trailblazer-rails
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 3.3.0)

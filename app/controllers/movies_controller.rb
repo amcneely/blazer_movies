@@ -21,28 +21,13 @@ class MoviesController < ApplicationController
 
   # POST /movies or /movies.json
   def create
-    result = Movie::Operation::Create.call(params)
-    if result.success?
-      puts "IN CONTROLLER - SUCCESS #{result.inspect}"
-      @movie = result["model"]
-      redirect_to @movie, notice: "Movie was successfully created."
-    else
-      puts "IN CONTROLLER - FAILURE #{result.inspect}"
-      @movie = result["model"]
-      render :new
+    run Movie::Operation::Create do |result|
+      logger.debug "DEBUG: FROM ACTION, SUCCESS RESULT IS #{result.inspect}"
+      return redirect_to @model, notice: "Movie was successfully created."
     end
-
-    # @movie = Movie.new(movie_params)
-    #
-    # respond_to do |format|
-    #   if @movie.save
-    #     format.html { redirect_to @movie, notice: "Movie was successfully created." }
-    #     format.json { render :show, status: :created, location: @movie }
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @movie.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    logger.debug "DEBUG: FROM ACTION, FAILURE RESULT IS #{result.inspect}"
+    @movie = @form
+    render :new
   end
 
   # PATCH/PUT /movies/1 or /movies/1.json
